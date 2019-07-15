@@ -13,11 +13,18 @@ long int reverse(long int a)
     }
     long int base =1;
     long int rnum =0;
+    //pop all 0s
+    int zeros=t.top();
+    while(zeros == 0)
+    {
+        t.pop();
+        zeros=t.top();
+    }
     while (!t.empty())
     {
         int tmp = t.top();
         t.pop();
-        if(tmp !=0)
+    
         {
             rnum+=(tmp*base);
             base*=10;
@@ -35,7 +42,7 @@ long int solve(long int a,long int b)
 }
 int main()
 {
-   /* int n;
+   int n;
     cin>>n;
     while(n--)
     {
@@ -43,13 +50,5 @@ int main()
         cin>>a>>b;
         cout<<solve(a,b)<<endl;
     }
-    */
-int n;
-cin>>n;
-while(n--)
-{
-    long int a;
-    cin>>a;
-    cout<<reverse(a)<<endl;
-}
+    
 }
