@@ -1,40 +1,52 @@
-/*
-You are asked to calculate factorials of some small positive integers.
-
-Input
-An integer t, 1<=t<=100, denoting the number of testcases, followed by t lines, each containing a single integer n, 1<=n<=100.
-
-Output
-For each integer n given at input, display a line with the value of n!
- */
-
 #include<iostream>
-#define li long int
-#define mod 1000000007
-using namespace std;
-li fac(li n, li dp[])
-{
-    if(dp[n])
-    return dp[n];
-    else
+using namespace std; 
+void solve(int num)
+{   
+    if(num==0 || num==1)
     {
-        dp[n]=(n*fac(n-1,dp))%mod;
-        return dp[n];
+        cout<<1;
+        return ;
     }
-    
-}
-int main()
-{
-    li dp[101]={0};
-    dp[0]=dp[1]=1;
-    int T;
-    cin>>T;
-    while(T--)
+    int a[200]={0};
+    int tmp=num;
+    int m=0;
+    while(tmp){
+        a[m]=tmp%10;
+        tmp/=10;
+        m++;
+    }
+    int x=0;
+    tmp=0;
+    for(int i=2;i<num;i++)
     {
-        int n;
-        cin>>n;
-        cout<<fac(n,dp)<<endl;
+        for(int j=0;j<m;j++)
+        {
+            x=a[j]*i+tmp;
+            a[j]=x%10;
+            tmp=x/10;
+        }
+        while(tmp!=0)
+        {
+            a[m]=tmp%10;
+            m++;
+            tmp/=10;
+        }
+        
     }
+    for(int i = m-1; i >= 0; i--)cout<<a[i];
 
+    
+
+}
+int main(int argc, const char** argv) {
+    int n;
+    cin>>n;
+    while(n--)
+    {
+        int a;
+        cin>>a;
+        solve(a);
+        cout<<endl;
+    }
     return 0;
 }
